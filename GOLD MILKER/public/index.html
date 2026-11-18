@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GOLD EDGE AI — XAUUSD Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lightweight-charts@4.2.2/dist/lightweight-charts.standalone.production.js"></script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">G</div><div><b>GOLD EDGE</b><span>AI TRADING INTELLIGENCE</span></div></div>
+    <div class="side-label">WORKSPACE</div>
+    <nav>
+      <a class="active" href="#dashboard"><i>◫</i> Dashboard</a>
+      <a href="#analysis"><i>⌁</i> AI Analysis</a>
+      <a href="#signals"><i>◈</i> Signals</a>
+      <a href="#rules"><i>⌗</i> Strategy checks</a>
+      <a href="#journal"><i>▤</i> Trade journal</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="connection"><span class="dot" id="connectionDot"></span><div><b id="connectionText">Checking connection</b><small>Market data connection</small></div></div>
+      <div class="disclaimer">MARKET INTELLIGENCE, NOT FINANCIAL ADVICE. No signal is guaranteed.</div>
+    </div>
+  </aside>
+
+  <main class="main" id="dashboard">
+    <header class="topbar">
+      <div><div class="eyebrow">MARKET OVERVIEW / PRECIOUS METALS</div><h1>Gold Intelligence</h1></div>
+      <div class="top-actions"><span class="live-pill"><span class="pulse"></span> LIVE DATA</span><button class="btn btn-outline" id="refreshBtn">↻ Rescan</button></div>
+    </header>
+
+    <section class="hero-grid">
+      <div class="price-card panel">
+        <div class="card-kicker">XAUUSD <span class="muted">· SPOT GOLD / USD</span></div>
+        <div class="price-line"><div class="price" id="price">—</div><div class="change neutral" id="change">Waiting for data</div></div>
+        <div class="price-foot"><span>Last candle <b id="lastCandle">—</b></span><span>Updated <b id="updated">—</b></span></div>
+      </div>
+      <div class="metric panel"><div class="metric-label">MARKET BIAS</div><div class="metric-value" id="bias">—</div><div class="metric-note" id="biasNote">Awaiting multi-timeframe data</div></div>
+      <div class="metric panel"><div class="metric-label">SIGNAL STATUS</div><div class="metric-value wait" id="signalStatus">WAIT</div><div class="metric-note" id="signalNote">No confirmed A+ setup</div></div>
+      <div class="metric panel"><div class="metric-label">CONFIRMATIONS</div><div class="metric-value" id="confirmCount">0 / 11</div><div class="metric-note">All checks required for A+</div></div>
+    </section>
+
+    <section class="content-grid">
+      <div class="panel chart-panel">
+        <div class="panel-head"><div><div class="section-kicker">PRICE ACTION</div><h2>XAUUSD Chart</h2></div><div class="timeframes" id="timeframes">
+          <button data-tf="1m">1M</button><button class="selected" data-tf="5m">5M</button><button data-tf="15m">15M</button><button data-tf="1h">1H</button><button data-tf="4h">4H</button><button data-tf="1d">1D</button>
+        </div></div>
+        <div id="chart" class="chart"></div>
+        <div class="chart-legend"><span><i class="legend-dot gold"></i> Candles</span><span><i class="legend-dot blue"></i> EMA 50</span><span><i class="legend-dot purple"></i> EMA 200</span></div>
+      </div>
+
+      <div class="panel signal-panel" id="signals">
+        <div class="panel-head"><div><div class="section-kicker">STRICT SNIPER ENGINE</div><h2>Trade setup</h2></div><span class="tag tag-wait" id="setupTag">WAIT</span></div>
+        <div class="signal-empty" id="signalEmpty"><div class="target-icon">◎</div><h3>No A+ setup yet</h3><p>The engine waits for all 11 rules to pass on closed candles. It will not force a trade.</p></div>
+        <div class="trade-details hidden" id="tradeDetails">
+          <div class="direction" id="direction">BUY</div>
+          <div class="trade-grid"><div><small>ENTRY</small><b id="entry">—</b></div><div><small>STOP LOSS</small><b id="stop">—</b></div><div><small>TAKE PROFIT 1</small><b id="tp1">—</b></div><div><small>TAKE PROFIT 2</small><b id="tp2">—</b></div><div><small>TAKE PROFIT 3</small><b id="tp3">—</b></div><div><small>RISK / REWARD</small><b id="rr">—</b></div></div>
+          <p class="reason" id="reason"></p>
+        </div>
+        <div class="signal-foot"><span>Last scan</span><b id="scanTime">Not scanned</b></div>
+      </div>
+    </section>
+
+    <section class="lower-grid">
+      <div class="panel" id="analysis">
+        <div class="panel-head"><div><div class="section-kicker">CONFLUENCE</div><h2>11-point validation</h2></div><span class="muted small">Closed candle logic</span></div>
+        <div class="checks" id="checks">
+          <div class="check-row"><span class="check-icon">·</span><span>Waiting for candle data…</span></div>
+        </div>
+      </div>
+      <div class="panel" id="rules">
+        <div class="panel-head"><div><div class="section-kicker">MARKET CONTEXT</div><h2>Multi-timeframe bias</h2></div></div>
+        <div class="tf-list" id="tfBias">
+          <div class="tf-row"><b>1D</b><span>—</span><em>Pending</em></div>
+          <div class="tf-row"><b>4H</b><span>—</span><em>Pending</em></div>
+          <div class="tf-row"><b>1H</b><span>—</span><em>Pending</em></div>
+          <div class="tf-row"><b>15M</b><span>—</span><em>Pending</em></div>
+          <div class="tf-row"><b>5M</b><span>—</span><em>Pending</em></div>
+        </div>
+        <div class="news-box"><div class="news-icon">!</div><div><b>News filter is manual</b><p>Add CPI, NFP or FOMC event times in Settings before trading. Signals are blocked around listed events.</p></div></div>
+        <div class="news-controls"><label>Next high-impact event (South Africa time)<input id="newsTime" type="datetime-local"></label><button class="btn btn-outline btn-small" id="addNews">Add event</button></div>
+        <div id="newsList" class="news-list"></div>
+      </div>
+    </section>
+
+    <section class="panel journal-panel" id="journal">
+      <div class="panel-head"><div><div class="section-kicker">TRACK RECORD</div><h2>Signal performance</h2></div><span class="muted small">Signals saved in this browser</span></div>
+      <div class="stats-grid"><div><small>RECORDED SIGNALS</small><b id="totalSignals">0</b></div><div><small>WIN RATE</small><b id="winRate">—</b></div><div><small>WINS / LOSSES</small><b id="winsLosses">0 / 0</b></div><div><small>PROFIT FACTOR</small><b id="profitFactor">—</b></div></div>
+      <div class="journal-actions"><p>Performance tracking is only meaningful after signals have been resolved using a consistent execution and cost model.</p><button class="btn btn-outline btn-small" id="exportBtn">Export journal CSV</button></div>
+    </section>
+    <footer>GOLD EDGE AI <span>·</span> Independent trading research terminal <span>·</span> Not investment advice</footer>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+<script src="/app.js"></script>
+</body>
+</html>
